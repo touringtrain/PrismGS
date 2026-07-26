@@ -1,0 +1,46 @@
+[
+  {
+    "config": {
+      "position_low": 50,
+      "color": 50,
+      "opacity": 50,
+      "scale": 50,
+      "rotation": 50
+    },
+    "quality_psnr": 15.808127104087946,
+    "bitrate_kb": 184.39999999999998
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 20,
+      "opacity": 0,
+      "scale": 20,
+      "rotation": 20
+    },
+    "quality_psnr": 33.91349757439996,
+    "bitrate_kb": 404.4
+  },
+  {
+    "config": {
+      "position_low": 20,
+      "color": 0,
+      "opacity": 0,
+      "scale": 0,
+      "rotation": 10
+    },
+    "quality_psnr": 36.1395517670186,
+    "bitrate_kb": 928.4
+  },
+  {
+    "config": {
+      "position_low": 0,
+      "color": 0,
+      "opacity": 0,
+      "scale": 0,
+      "rotation": 0
+    },
+    "quality_psnr": 36.2693,
+    "bitrate_kb": 1212.1
+  }
+]

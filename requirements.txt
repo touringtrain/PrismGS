@@ -1,0 +1,15 @@
+numpy
+scipy
+matplotlib
+opencv-python
+plyfile
+pandas
+imageio
+tqdm
+
+# Optional / analysis-only dependencies used by a subset of scripts
+open3d
+
+# Rendering-related scripts may additionally require:
+# - torch
+# - the original 3DGS / VideoGS codebase and its custom modules

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
+*.mp4
+*.log
+nohup.out
+PrismGS_extras/
+
+core/pareto_frontier*.json
+core/pareto_frontier*.png
+core/pareto_frontier*.pdf

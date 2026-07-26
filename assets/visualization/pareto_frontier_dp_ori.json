@@ -1,0 +1,860 @@
+[
+  {
+    "config": {
+      "position_low": 50,
+      "color": 40,
+      "opacity": 32,
+      "scale": 34,
+      "rotation": 50
+    },
+    "quality_psnr": 12.319862405158597,
+    "bitrate_kb": 190.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 33,
+      "opacity": 32,
+      "scale": 34,
+      "rotation": 50
+    },
+    "quality_psnr": 15.116718551159927,
+    "bitrate_kb": 200.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 33,
+      "opacity": 32,
+      "scale": 29,
+      "rotation": 50
+    },
+    "quality_psnr": 18.094800675030815,
+    "bitrate_kb": 210.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 27,
+      "opacity": 32,
+      "scale": 29,
+      "rotation": 50
+    },
+    "quality_psnr": 20.343490590565324,
+    "bitrate_kb": 220.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 33,
+      "opacity": 32,
+      "scale": 29,
+      "rotation": 34
+    },
+    "quality_psnr": 21.39300676544326,
+    "bitrate_kb": 230.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 33,
+      "opacity": 32,
+      "scale": 29,
+      "rotation": 29
+    },
+    "quality_psnr": 24.428112189792486,
+    "bitrate_kb": 240.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 27,
+      "opacity": 32,
+      "scale": 29,
+      "rotation": 29
+    },
+    "quality_psnr": 27.463859890099133,
+    "bitrate_kb": 250.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 27,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 29
+    },
+    "quality_psnr": 28.763848722123488,
+    "bitrate_kb": 260.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 22,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 29
+    },
+    "quality_psnr": 30.09201235897821,
+    "bitrate_kb": 270.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 22,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 27
+    },
+    "quality_psnr": 31.191880923140324,
+    "bitrate_kb": 280.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 22,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 24
+    },
+    "quality_psnr": 32.42168478623832,
+    "bitrate_kb": 290.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 22,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 21
+    },
+    "quality_psnr": 33.232505342136434,
+    "bitrate_kb": 300.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 19,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 21
+    },
+    "quality_psnr": 33.67816055676094,
+    "bitrate_kb": 310.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 19,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 20
+    },
+    "quality_psnr": 33.87445497825487,
+    "bitrate_kb": 320.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 19,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 18
+    },
+    "quality_psnr": 34.17106735571877,
+    "bitrate_kb": 330.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 17,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 18
+    },
+    "quality_psnr": 34.34973969412264,
+    "bitrate_kb": 340.0
+  },
+  {
+    "config": {
+      "position_low": 50,
+      "color": 17,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 18
+    },
+    "quality_psnr": 34.510120597475,
+    "bitrate_kb": 350.0
+  },
+  {
+    "config": {
+      "position_low": 49,
+      "color": 17,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 18
+    },
+    "quality_psnr": 34.63902889522472,
+    "bitrate_kb": 360.0
+  },
+  {
+    "config": {
+      "position_low": 46,
+      "color": 17,
+      "opacity": 32,
+      "scale": 25,
+      "rotation": 18
+    },
+    "quality_psnr": 34.78610667489187,
+    "bitrate_kb": 370.0
+  },
+  {
+    "config": {
+      "position_low": 46,
+      "color": 17,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 18
+    },
+    "quality_psnr": 34.94852500068737,
+    "bitrate_kb": 380.0
+  },
+  {
+    "config": {
+      "position_low": 46,
+      "color": 17,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 17
+    },
+    "quality_psnr": 35.056907295159036,
+    "bitrate_kb": 390.0
+  },
+  {
+    "config": {
+      "position_low": 46,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 17
+    },
+    "quality_psnr": 35.161118756266696,
+    "bitrate_kb": 400.0
+  },
+  {
+    "config": {
+      "position_low": 46,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 16
+    },
+    "quality_psnr": 35.2446431696116,
+    "bitrate_kb": 410.0
+  },
+  {
+    "config": {
+      "position_low": 45,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 16
+    },
+    "quality_psnr": 35.32517152638631,
+    "bitrate_kb": 420.0
+  },
+  {
+    "config": {
+      "position_low": 44,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 16
+    },
+    "quality_psnr": 35.395169277597546,
+    "bitrate_kb": 430.0
+  },
+  {
+    "config": {
+      "position_low": 44,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 15
+    },
+    "quality_psnr": 35.45660327182628,
+    "bitrate_kb": 440.0
+  },
+  {
+    "config": {
+      "position_low": 44,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.523491674339084,
+    "bitrate_kb": 450.0
+  },
+  {
+    "config": {
+      "position_low": 43,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.58391205365374,
+    "bitrate_kb": 460.0
+  },
+  {
+    "config": {
+      "position_low": 42,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.63523892995818,
+    "bitrate_kb": 470.0
+  },
+  {
+    "config": {
+      "position_low": 42,
+      "color": 13,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.67962218777431,
+    "bitrate_kb": 480.0
+  },
+  {
+    "config": {
+      "position_low": 41,
+      "color": 13,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.722646721161524,
+    "bitrate_kb": 490.0
+  },
+  {
+    "config": {
+      "position_low": 38,
+      "color": 15,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.76436420941205,
+    "bitrate_kb": 500.0
+  },
+  {
+    "config": {
+      "position_low": 38,
+      "color": 13,
+      "opacity": 32,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.80890829119739,
+    "bitrate_kb": 510.0
+  },
+  {
+    "config": {
+      "position_low": 38,
+      "color": 13,
+      "opacity": 20,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.84246562633655,
+    "bitrate_kb": 520.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 20,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.859426549017954,
+    "bitrate_kb": 530.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 16,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.87390726667085,
+    "bitrate_kb": 540.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 13,
+      "opacity": 16,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.88619529464461,
+    "bitrate_kb": 550.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 13,
+      "opacity": 16,
+      "scale": 23,
+      "rotation": 12
+    },
+    "quality_psnr": 35.897444318874165,
+    "bitrate_kb": 560.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 0,
+      "opacity": 16,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.91035851695675,
+    "bitrate_kb": 570.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 0,
+      "opacity": 16,
+      "scale": 23,
+      "rotation": 13
+    },
+    "quality_psnr": 35.922659030718016,
+    "bitrate_kb": 580.0
+  },
+  {
+    "config": {
+      "position_low": 41,
+      "color": 13,
+      "opacity": 32,
+      "scale": 6,
+      "rotation": 13
+    },
+    "quality_psnr": 35.95888449502765,
+    "bitrate_kb": 590.0
+  },
+  {
+    "config": {
+      "position_low": 38,
+      "color": 15,
+      "opacity": 32,
+      "scale": 6,
+      "rotation": 13
+    },
+    "quality_psnr": 36.00087786559541,
+    "bitrate_kb": 600.0
+  },
+  {
+    "config": {
+      "position_low": 38,
+      "color": 13,
+      "opacity": 32,
+      "scale": 6,
+      "rotation": 13
+    },
+    "quality_psnr": 36.04571652227052,
+    "bitrate_kb": 610.0
+  },
+  {
+    "config": {
+      "position_low": 38,
+      "color": 13,
+      "opacity": 20,
+      "scale": 6,
+      "rotation": 13
+    },
+    "quality_psnr": 36.07949577574099,
+    "bitrate_kb": 620.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 20,
+      "scale": 6,
+      "rotation": 13
+    },
+    "quality_psnr": 36.09656886286105,
+    "bitrate_kb": 630.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 20,
+      "scale": 4,
+      "rotation": 13
+    },
+    "quality_psnr": 36.11233833653679,
+    "bitrate_kb": 640.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 13
+    },
+    "quality_psnr": 36.126921184773984,
+    "bitrate_kb": 650.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 13,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 13
+    },
+    "quality_psnr": 36.13929587858206,
+    "bitrate_kb": 660.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 13,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 12
+    },
+    "quality_psnr": 36.150624240690085,
+    "bitrate_kb": 670.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 13
+    },
+    "quality_psnr": 36.16362952090186,
+    "bitrate_kb": 680.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 13
+    },
+    "quality_psnr": 36.176016788558044,
+    "bitrate_kb": 690.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 12
+    },
+    "quality_psnr": 36.187356661343166,
+    "bitrate_kb": 700.0
+  },
+  {
+    "config": {
+      "position_low": 35,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 12
+    },
+    "quality_psnr": 36.195774551096875,
+    "bitrate_kb": 710.0
+  },
+  {
+    "config": {
+      "position_low": 33,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 12
+    },
+    "quality_psnr": 36.20367357191096,
+    "bitrate_kb": 720.0
+  },
+  {
+    "config": {
+      "position_low": 32,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 12
+    },
+    "quality_psnr": 36.20464621491895,
+    "bitrate_kb": 730.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 20,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.20634892809597,
+    "bitrate_kb": 740.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 13,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.22096973959593,
+    "bitrate_kb": 750.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 13,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.23337664821864,
+    "bitrate_kb": 760.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 0,
+      "opacity": 20,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.24313797025149,
+    "bitrate_kb": 770.0
+  },
+  {
+    "config": {
+      "position_low": 37,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.257773637865554,
+    "bitrate_kb": 780.0
+  },
+  {
+    "config": {
+      "position_low": 36,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.27019315306963,
+    "bitrate_kb": 790.0
+  },
+  {
+    "config": {
+      "position_low": 35,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.278630312217935,
+    "bitrate_kb": 800.0
+  },
+  {
+    "config": {
+      "position_low": 33,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.28654741468354,
+    "bitrate_kb": 810.0
+  },
+  {
+    "config": {
+      "position_low": 32,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.287522284169,
+    "bitrate_kb": 820.0
+  },
+  {
+    "config": {
+      "position_low": 32,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.28842231336106,
+    "bitrate_kb": 830.0
+  },
+  {
+    "config": {
+      "position_low": 26,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.28989184605659,
+    "bitrate_kb": 870.0
+  },
+  {
+    "config": {
+      "position_low": 25,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.291230049014835,
+    "bitrate_kb": 880.0
+  },
+  {
+    "config": {
+      "position_low": 24,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.29268379381428,
+    "bitrate_kb": 890.0
+  },
+  {
+    "config": {
+      "position_low": 23,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.29417570433343,
+    "bitrate_kb": 900.0
+  },
+  {
+    "config": {
+      "position_low": 22,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.295628404450774,
+    "bitrate_kb": 910.0
+  },
+  {
+    "config": {
+      "position_low": 21,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.29696451804482,
+    "bitrate_kb": 920.0
+  },
+  {
+    "config": {
+      "position_low": 20,
+      "color": 0,
+      "opacity": 16,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.29810666899403,
+    "bitrate_kb": 930.0
+  },
+  {
+    "config": {
+      "position_low": 20,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.2990069607076,
+    "bitrate_kb": 940.0
+  },
+  {
+    "config": {
+      "position_low": 19,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.299895108783254,
+    "bitrate_kb": 960.0
+  },
+  {
+    "config": {
+      "position_low": 18,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.30053841908748,
+    "bitrate_kb": 970.0
+  },
+  {
+    "config": {
+      "position_low": 17,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.300963399345065,
+    "bitrate_kb": 980.0
+  },
+  {
+    "config": {
+      "position_low": 16,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.30119655728085,
+    "bitrate_kb": 1000.0
+  },
+  {
+    "config": {
+      "position_low": 15,
+      "color": 0,
+      "opacity": 14,
+      "scale": 4,
+      "rotation": 0
+    },
+    "quality_psnr": 36.30126440061963,
+    "bitrate_kb": 1010.0
+  }
+]

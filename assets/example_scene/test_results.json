@@ -1,0 +1,532 @@
+[
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 25,
+  "bitrate_kb": 300.0,
+  "psnr": 30.8503,
+  "ssim": 0.959346
+},
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 20,
+  "scale": 25,
+  "rotation": 25,
+  "bitrate_kb": 310.0,
+  "psnr": 30.9029,
+  "ssim": 0.95986
+},
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 25,
+  "bitrate_kb": 320.0,
+  "psnr": 31.2753,
+  "ssim": 0.961579
+},
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 330.0,
+  "psnr": 31.5428,
+  "ssim": 0.963281
+},
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 20,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 340.0,
+  "psnr": 31.5966,
+  "ssim": 0.963788
+},
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 350.0,
+  "psnr": 31.8946,
+  "ssim": 0.965294
+},
+{
+  "position_low": 50,
+  "color": 20,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 360.0,
+  "psnr": 31.9513,
+  "ssim": 0.965841
+},
+{
+  "position_low": 50,
+  "color": 15,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 380.0,
+  "psnr": 31.8044,
+  "ssim": 0.966162
+},
+{
+  "position_low": 45,
+  "color": 20,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 390.0,
+  "psnr": 32.0453,
+  "ssim": 0.968179
+},
+{
+  "position_low": 45,
+  "color": 20,
+  "opacity": 20,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 400.0,
+  "psnr": 32.1,
+  "ssim": 0.968678
+},
+{
+  "position_low": 45,
+  "color": 20,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 410.0,
+  "psnr": 32.4628,
+  "ssim": 0.970387
+},
+{
+  "position_low": 45,
+  "color": 20,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 420.0,
+  "psnr": 32.5232,
+  "ssim": 0.970931
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 440.0,
+  "psnr": 32.3419,
+  "ssim": 0.971141
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 20,
+  "scale": 25,
+  "rotation": 20,
+  "bitrate_kb": 450.0,
+  "psnr": 32.4052,
+  "ssim": 0.971681
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 460.0,
+  "psnr": 32.7993,
+  "ssim": 0.97347
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 470.0,
+  "psnr": 32.8687,
+  "ssim": 0.974057
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 15,
+  "scale": 20,
+  "rotation": 20,
+  "bitrate_kb": 490.0,
+  "psnr": 32.8729,
+  "ssim": 0.974099
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 15,
+  "bitrate_kb": 510.0,
+  "psnr": 32.6681,
+  "ssim": 0.973041
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 20,
+  "scale": 25,
+  "rotation": 15,
+  "bitrate_kb": 520.0,
+  "psnr": 32.7316,
+  "ssim": 0.97357
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 530.0,
+  "psnr": 33.1139,
+  "ssim": 0.975353
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 540.0,
+  "psnr": 33.1869,
+  "ssim": 0.975942
+},
+{
+  "position_low": 45,
+  "color": 15,
+  "opacity": 15,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 560.0,
+  "psnr": 33.1912,
+  "ssim": 0.975986
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 30,
+  "scale": 25,
+  "rotation": 15,
+  "bitrate_kb": 580.0,
+  "psnr": 32.8744,
+  "ssim": 0.974977
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 25,
+  "rotation": 15,
+  "bitrate_kb": 590.0,
+  "psnr": 32.9461,
+  "ssim": 0.975537
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 600.0,
+  "psnr": 33.3382,
+  "ssim": 0.977335
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 610.0,
+  "psnr": 33.4202,
+  "ssim": 0.977958
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 15,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 630.0,
+  "psnr": 33.4247,
+  "ssim": 0.978006
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 30,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 650.0,
+  "psnr": 33.4289,
+  "ssim": 0.977989
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 15,
+  "bitrate_kb": 660.0,
+  "psnr": 33.5109,
+  "ssim": 0.978611
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 20,
+  "rotation": 10,
+  "bitrate_kb": 680.0,
+  "psnr": 33.5786,
+  "ssim": 0.978782
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 15,
+  "scale": 20,
+  "rotation": 10,
+  "bitrate_kb": 700.0,
+  "psnr": 33.5825,
+  "ssim": 0.978827
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 10,
+  "rotation": 15,
+  "bitrate_kb": 710.0,
+  "psnr": 33.5705,
+  "ssim": 0.978827
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 30,
+  "scale": 5,
+  "rotation": 15,
+  "bitrate_kb": 720.0,
+  "psnr": 33.4952,
+  "ssim": 0.978297
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 15,
+  "bitrate_kb": 730.0,
+  "psnr": 33.5818,
+  "ssim": 0.978922
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 15,
+  "bitrate_kb": 750.0,
+  "psnr": 33.5868,
+  "ssim": 0.978974
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 30,
+  "scale": 5,
+  "rotation": 15,
+  "bitrate_kb": 770.0,
+  "psnr": 33.5893,
+  "ssim": 0.97896
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 15,
+  "bitrate_kb": 780.0,
+  "psnr": 33.676,
+  "ssim": 0.979584
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 800.0,
+  "psnr": 33.7384,
+  "ssim": 0.979744
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 820.0,
+  "psnr": 33.7424,
+  "ssim": 0.979791
+},
+{
+  "position_low": 40,
+  "color": 15,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 5,
+  "bitrate_kb": 840.0,
+  "psnr": 33.8049,
+  "ssim": 0.980142
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 850.0,
+  "psnr": 33.8396,
+  "ssim": 0.980421
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 870.0,
+  "psnr": 33.8434,
+  "ssim": 0.980464
+},
+{
+  "position_low": 35,
+  "color": 15,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 5,
+  "bitrate_kb": 890.0,
+  "psnr": 33.9061,
+  "ssim": 0.980822
+},
+{
+  "position_low": 35,
+  "color": 10,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 900.0,
+  "psnr": 33.9947,
+  "ssim": 0.981759
+},
+{
+  "position_low": 35,
+  "color": 10,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 920.0,
+  "psnr": 33.9979,
+  "ssim": 0.981806
+},
+{
+  "position_low": 35,
+  "color": 0,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 930.0,
+  "psnr": 34.0574,
+  "ssim": 0.982458
+},
+{
+  "position_low": 35,
+  "color": 0,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 10,
+  "bitrate_kb": 950.0,
+  "psnr": 34.0599,
+  "ssim": 0.982506
+},
+{
+  "position_low": 35,
+  "color": 0,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 5,
+  "bitrate_kb": 970.0,
+  "psnr": 34.129,
+  "ssim": 0.982871
+},
+{
+  "position_low": 35,
+  "color": 0,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 5,
+  "bitrate_kb": 990.0,
+  "psnr": 34.1321,
+  "ssim": 0.98292
+},
+{
+  "position_low": 35,
+  "color": 0,
+  "opacity": 20,
+  "scale": 5,
+  "rotation": 0,
+  "bitrate_kb": 1010.0,
+  "psnr": 34.1387,
+  "ssim": 0.982934
+},
+{
+  "position_low": 35,
+  "color": 0,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 0,
+  "bitrate_kb": 1030.0,
+  "psnr": 34.1417,
+  "ssim": 0.982982
+},
+{
+  "position_low": 30,
+  "color": 0,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 0,
+  "bitrate_kb": 1090.0,
+  "psnr": 34.1672,
+  "ssim": 0.983215
+},
+{
+  "position_low": 25,
+  "color": 0,
+  "opacity": 15,
+  "scale": 5,
+  "rotation": 0,
+  "bitrate_kb": 1160.0,
+  "psnr": 34.1816,
+  "ssim": 0.983294
+}
+]
