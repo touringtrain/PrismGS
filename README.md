@@ -4,6 +4,8 @@ PyTorch-based research code release for **PrismGS: Coordinated Training and Comp
 
 Paper: [PrismGS_0402_1856.pdf](./PrismGS_0402_1856.pdf)
 
+Project Page: `https://touringtrain.github.io/PrismGS/`
+
 PrismGS studies bandwidth-adaptive streaming for dynamic 4D Gaussian scenes. This repository is a cleaned and self-contained open-source release reorganized from our internal research workspace, with bundled example assets, evaluation scripts, and plotting code.
 
 ## Abstract
@@ -17,6 +19,8 @@ Dynamic 4D Gaussian scene streaming requires balancing visual quality, storage c
 </p>
 
 Demo link: [PrismGS video demo](./PrismGS%20video%20demo.mp4)
+
+For a cleaner video-first presentation, use the GitHub Pages site in [`docs/`](./docs/).
 
 ## Overview
 

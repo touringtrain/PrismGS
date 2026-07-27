@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrismGS</title>
+    <meta
+      name="description"
+      content="PrismGS: Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">ACM MM 2026</p>
+        <h1>PrismGS</h1>
+        <p class="subtitle">
+          Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming
+        </p>
+        <div class="hero-actions">
+          <a href="https://github.com/touringtrain/PrismGS" target="_blank" rel="noreferrer">GitHub Repo</a>
+          <a href="https://github.com/touringtrain/PrismGS/blob/main/PrismGS_0402_1856.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Demo Video</h2>
+        <video class="demo-video" controls preload="metadata" playsinline>
+          <source src="./assets/demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Abstract</h2>
+          <p>
+            Dynamic 4D Gaussian scene streaming requires balancing visual quality, storage cost,
+            and transmission bandwidth under rapidly changing network conditions. PrismGS addresses
+            this problem with a coordinated training-and-compression pipeline that models the
+            rate-distortion behavior of different Gaussian attribute groups and selects
+            Pareto-optimal compression configurations for streaming. Instead of relying on a single
+            uniform compression level, PrismGS performs attribute-aware allocation across geometry-
+            and appearance-related components, enabling more effective bitrate use under bandwidth
+            constraints.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Overview</h2>
+          <ol>
+            <li>Convert reconstructed 4D Gaussian checkpoints into feature images.</li>
+            <li>Compress feature images into videos under different QP settings.</li>
+            <li>Reconstruct anchor checkpoints from compressed feature videos.</li>
+            <li>Measure attribute-wise sensitivity and fit a quality model.</li>
+            <li>Generate Pareto-optimal compression configurations.</li>
+            <li>Evaluate streaming quality and smoothness under real bandwidth traces.</li>
+          </ol>
+        </article>
+      </section>
+
+      <section class="card figure-card">
+        <div>
+          <h2>Pareto Frontier</h2>
+          <p>
+            PrismGS explicitly models the rate-distortion tradeoff of Gaussian attribute groups and
+            searches for Pareto-optimal operating points for bandwidth-adaptive streaming.
+          </p>
+        </div>
+        <img src="./assets/pareto_frontier_dp.png" alt="PrismGS Pareto frontier figure" />
+      </section>
+
+      <section class="card">
+        <h2>Resources</h2>
+        <ul class="links">
+          <li><a href="https://github.com/touringtrain/PrismGS" target="_blank" rel="noreferrer">Source code</a></li>
+          <li><a href="https://github.com/touringtrain/PrismGS/blob/main/README.md" target="_blank" rel="noreferrer">Repository README</a></li>
+          <li><a href="https://github.com/touringtrain/PrismGS/blob/main/PrismGS_0402_1856.pdf" target="_blank" rel="noreferrer">Paper PDF</a></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
