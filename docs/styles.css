@@ -72,45 +72,9 @@ figcaption {
   background: #000000;
 }
 
-.results-grid {
-  display: grid;
-  gap: 16px;
-}
-
-.results-grid.six {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.results-grid figure,
-.wide-figure {
-  margin: 0;
-}
-
-.results-grid img,
-.wide-figure img {
-  width: 100%;
-  display: block;
-  border: 1px solid #d9d9d9;
-}
-
-figcaption {
-  margin-top: 8px;
-  text-align: center;
-}
-
-@media (max-width: 900px) {
-  .results-grid.six {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 600px) {
   .page {
     width: min(100% - 20px, 1120px);
-  }
-
-  .results-grid.six {
-    grid-template-columns: 1fr;
   }
 
   .links {
