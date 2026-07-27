@@ -13,18 +13,19 @@
   <body>
     <main class="page">
       <section class="hero">
-        <p class="eyebrow">ACM MM 2026</p>
-        <h1>PrismGS</h1>
-        <p class="subtitle">
-          Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming
+        <h1>PrismGS: Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming</h1>
+        <p class="authors">
+          Jinghang Li, Zhe Wang, Yifei Zhu
         </p>
-        <div class="hero-actions">
-          <a href="https://github.com/touringtrain/PrismGS" target="_blank" rel="noreferrer">GitHub Repo</a>
-          <a href="https://github.com/touringtrain/PrismGS/blob/main/PrismGS_0402_1856.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
+        <p class="affiliation">Shanghai Jiao Tong University</p>
+        <p class="venue">ACM MM 2026</p>
+        <div class="links">
+          <a href="https://github.com/touringtrain/PrismGS" target="_blank" rel="noreferrer">Code</a>
+          <a href="https://github.com/touringtrain/PrismGS/blob/main/PrismGS_0402_1856.pdf" target="_blank" rel="noreferrer">Paper</a>
         </div>
       </section>
 
-      <section class="card">
+      <section class="section">
         <h2>Demo Video</h2>
         <video class="demo-video" controls preload="metadata" playsinline>
           <source src="./assets/demo_web.mp4" type="video/mp4" />
@@ -32,52 +33,62 @@
         </video>
       </section>
 
-      <section class="grid">
-        <article class="card">
-          <h2>Abstract</h2>
-          <p>
-            Dynamic 4D Gaussian scene streaming requires balancing visual quality, storage cost,
-            and transmission bandwidth under rapidly changing network conditions. PrismGS addresses
-            this problem with a coordinated training-and-compression pipeline that models the
-            rate-distortion behavior of different Gaussian attribute groups and selects
-            Pareto-optimal compression configurations for streaming. Instead of relying on a single
-            uniform compression level, PrismGS performs attribute-aware allocation across geometry-
-            and appearance-related components, enabling more effective bitrate use under bandwidth
-            constraints.
-          </p>
-        </article>
-
-        <article class="card">
-          <h2>Overview</h2>
-          <ol>
-            <li>Convert reconstructed 4D Gaussian checkpoints into feature images.</li>
-            <li>Compress feature images into videos under different QP settings.</li>
-            <li>Reconstruct anchor checkpoints from compressed feature videos.</li>
-            <li>Measure attribute-wise sensitivity and fit a quality model.</li>
-            <li>Generate Pareto-optimal compression configurations.</li>
-            <li>Evaluate streaming quality and smoothness under real bandwidth traces.</li>
-          </ol>
-        </article>
+      <section class="section">
+        <h2>Abstract</h2>
+        <p>
+          Dynamic 4D Gaussian scene streaming requires balancing visual quality, storage cost, and
+          transmission bandwidth under rapidly changing network conditions. PrismGS addresses this
+          problem with a coordinated training-and-compression pipeline that models the
+          rate-distortion behavior of different Gaussian attribute groups and selects Pareto-optimal
+          compression configurations for streaming. Instead of relying on a single uniform
+          compression level, PrismGS performs attribute-aware allocation across geometry- and
+          appearance-related components, enabling more effective bitrate use under bandwidth
+          constraints.
+        </p>
       </section>
 
-      <section class="card figure-card">
-        <div>
-          <h2>Pareto Frontier</h2>
-          <p>
-            PrismGS explicitly models the rate-distortion tradeoff of Gaussian attribute groups and
-            searches for Pareto-optimal operating points for bandwidth-adaptive streaming.
-          </p>
+      <section class="section">
+        <h2>Experimental Results</h2>
+        <p class="caption">
+          Qualitative comparisons on a representative dynamic scene. From left to right: Ground
+          Truth, 3DGStream, 4DGC, HiCoM, V<sup>3</sup>, and PrismGS.
+        </p>
+        <div class="results-grid six">
+          <figure>
+            <img src="./assets/results/4k_4_GT.png" alt="Ground truth result" />
+            <figcaption>GT</figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/results/4k_4_3dgstream.png" alt="3DGStream result" />
+            <figcaption>3DGStream</figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/results/4k_4_4DGC.png" alt="4DGC result" />
+            <figcaption>4DGC</figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/results/4k_4_H.png" alt="HiCoM result" />
+            <figcaption>HiCoM</figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/results/4k_4_U.png" alt="V3 result" />
+            <figcaption>V<sup>3</sup></figcaption>
+          </figure>
+          <figure>
+            <img src="./assets/results/4k_4_A.png" alt="PrismGS result" />
+            <figcaption>PrismGS</figcaption>
+          </figure>
         </div>
-        <img src="./assets/pareto_frontier_dp.png" alt="PrismGS Pareto frontier figure" />
       </section>
 
-      <section class="card">
-        <h2>Resources</h2>
-        <ul class="links">
-          <li><a href="https://github.com/touringtrain/PrismGS" target="_blank" rel="noreferrer">Source code</a></li>
-          <li><a href="https://github.com/touringtrain/PrismGS/blob/main/README.md" target="_blank" rel="noreferrer">Repository README</a></li>
-          <li><a href="https://github.com/touringtrain/PrismGS/blob/main/PrismGS_0402_1856.pdf" target="_blank" rel="noreferrer">Paper PDF</a></li>
-        </ul>
+      <section class="section">
+        <h2>Streaming Performance</h2>
+        <p class="caption">
+          Example evaluation figure showing streaming smoothness under bandwidth variation.
+        </p>
+        <figure class="wide-figure">
+          <img src="./assets/results/walking_smoothness.png" alt="Walking smoothness evaluation" />
+        </figure>
       </section>
     </main>
   </body>
