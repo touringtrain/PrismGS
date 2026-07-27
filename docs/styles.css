@@ -72,6 +72,16 @@ figcaption {
   background: #000000;
 }
 
+.result-figure {
+  margin: 0;
+}
+
+.result-figure img {
+  width: 100%;
+  display: block;
+  border: 1px solid #d9d9d9;
+}
+
 @media (max-width: 600px) {
   .page {
     width: min(100% - 20px, 1120px);
