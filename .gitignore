@@ -8,6 +8,7 @@ __pycache__/
 *.log
 nohup.out
 PrismGS_extras/
+!docs/assets/*.mp4
 
 core/pareto_frontier*.json
 core/pareto_frontier*.png
