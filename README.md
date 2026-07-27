@@ -10,6 +10,14 @@ PrismGS studies bandwidth-adaptive streaming for dynamic 4D Gaussian scenes. Thi
 
 Dynamic 4D Gaussian scene streaming requires balancing visual quality, storage cost, and transmission bandwidth under rapidly changing network conditions. PrismGS addresses this problem with a coordinated training-and-compression pipeline that models the rate-distortion behavior of different Gaussian attribute groups and selects Pareto-optimal compression configurations for streaming. Instead of relying on a single uniform compression level, PrismGS performs attribute-aware allocation across geometry- and appearance-related components, enabling more effective bitrate use under bandwidth constraints. This repository includes the core quality modeling and Pareto frontier generation code, bandwidth-trace evaluation on dynamic scenes, and a bundled example scene for reproducing the main workflow.
 
+## Demo Video
+
+<p align="center">
+  <video src="./PrismGS%20video%20demo.mp4" controls width="100%"></video>
+</p>
+
+Demo link: [PrismGS video demo](./PrismGS%20video%20demo.mp4)
+
 ## Overview
 
 PrismGS is organized around the following pipeline:
