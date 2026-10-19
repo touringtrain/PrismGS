@@ -1,6 +1,5 @@
 import os
 import numpy as np
-import plyfile
 import json
 import cv2
 import argparse
@@ -37,12 +36,14 @@ if not os.path.exists(output_path):
     os.makedirs(output_path)
 
 feature_video_path = args.feature_video_path or str(repo_root / "assets" / "example_scene" / "feature_video")
-min_max_path = args.min_max_path or str(repo_root / "assets" / "example_scene" / "feature_image" / "min_max.json")
+min_max_path = args.min_max_path or str(repo_root / "assets" / "example_scene" / "min_max.json")
 
 group_idx = 0
 
 def read_video(video_path):
     cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise FileNotFoundError(f"Cannot open feature video: {video_path}")
     frames = []
     while True:
         ret, frame = cap.read()
@@ -50,6 +51,9 @@ def read_video(video_path):
             break
         gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         frames.append(gray_frame)
+    cap.release()
+    if len(frames) < group_size:
+        raise ValueError(f"Expected at least {group_size} frames in {video_path}, got {len(frames)}")
     return frames
 
 def get_attribute():

@@ -1,15 +1,12 @@
-numpy
-scipy
+# Install CUDA-compatible torch/torchvision and CUDA extensions separately.
+numpy>=1.21.6,<2
+scipy>=1.10
 matplotlib
-opencv-python
-plyfile
+opencv-python>=4.5.5,<4.12
+plyfile>=1.0
 pandas
-imageio
-tqdm
-
-# Optional / analysis-only dependencies used by a subset of scripts
-open3d
-
-# Rendering-related scripts may additionally require:
-# - torch
-# - the original 3DGS / VideoGS codebase and its custom modules
+Pillow>=9
+imageio>=2.31
+tqdm>=4.62
+tensorboard>=2.9
+natsort>=8.4

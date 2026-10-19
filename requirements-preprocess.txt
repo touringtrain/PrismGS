@@ -1,0 +1,6 @@
+# Optional helpers for preparing raw datasets / NeuS2 point clouds.
+open3d
+pymeshlab
+commentjson
+trimesh
+pybind11

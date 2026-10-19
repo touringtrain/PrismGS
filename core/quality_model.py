@@ -417,7 +417,7 @@ class GaussianCompressionOptimizer:
                     new_quality = prev_quality * quality_factor
                     
                     # 离散化码率
-                    discrete_bitrate = (new_bitrate // bitrate_step) * bitrate_step
+                    discrete_bitrate = int(np.ceil(new_bitrate / bitrate_step)) * bitrate_step
                     
                     if discrete_bitrate <= max_bitrate:
                         if (discrete_bitrate not in dp[current_stage] or 
@@ -433,8 +433,9 @@ class GaussianCompressionOptimizer:
                 dp[len(attributes)][bitrate] = (quality, config)
         
         return self._filter_pareto_front(
-            [(dp[len(attributes)][b][1], dp[len(attributes)][b][0], b) 
-             for b in dp[len(attributes)] if b >= min_bitrate]
+            [(config, self.predict_quality_basic(config), float(self.calculate_bitrate(config)))
+             for _, config in dp[len(attributes)].values()
+             if min_bitrate <= self.calculate_bitrate(config) <= max_bitrate]
         )
         
         # 第二阶段：使用enhanced预测重新评估所有候选解

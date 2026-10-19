@@ -13,3 +13,41 @@ PrismGS_extras/
 core/pareto_frontier*.json
 core/pareto_frontier*.png
 core/pareto_frontier*.pdf
+
+
+
+# Fetched CUDA source trees and local training outputs
+third_party/videogs/submodules/
+third_party/videogs/output/
+third_party/videogs/external/
+
+# Generated pipeline artifacts and compiled extensions
+runs/
+dist/
+*.egg-info/
+*.so
+*.o
+*.a
+build/
+
+# Local prepared dataset copies; distributed separately from source
+datasets/*/
+
+# Local experiments and generated reports (keep source/configuration only)
+assets/example_scene/feature_video/**/group*/
+*.ply
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.npy
+/docs/*verification.json
+/docs/*summary.json
+/docs/*benchmark.json
+/docs/assets/calibration_greeting*
+/docs/assets/qr/
+/ACM_MM_PrismGS_Camera_Ready_Version.pdf
+/evaluation_comparison.pdf
+/training/verified_environment.json
+
+training/local_reference/

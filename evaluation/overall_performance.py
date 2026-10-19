@@ -18,7 +18,20 @@ parser.add_argument(
     default=str(REPO_ROOT / "evaluation" / "Lumos5G-v1.0.csv"),
     help="Path to Lumos5G throughput trace.",
 )
+parser.add_argument(
+    "--scene-indices", nargs="+", type=int, choices=range(3),
+    help="Baseline scene index per result file; bundled 4k_4 uses index 2.",
+)
 args = parser.parse_args()
+if args.scene_indices is None:
+    if len(args.results) == 1:
+        args.scene_indices = [2]
+    elif len(args.results) == 3:
+        args.scene_indices = [0, 1, 2]
+    else:
+        parser.error("Provide --scene-indices for each result file.")
+if len(args.scene_indices) != len(args.results):
+    parser.error("--scene-indices must have one index per result file.")
 
 def read_throughput_data(file_path):
     throughput_data_walk = np.array([])
@@ -79,6 +92,12 @@ for i in range(len(unified_bitrates)):
 for i in range(len(fourdgc_bitrate)):
     fourdgc_bitrate[i] = fourdgc_bitrate[i] * 30  # convert to kbps
 
+# Align baseline measurements with the explicitly selected result scenes.
+for name in ("hicom_psnr", "hicom_ssim", "hicom_bitrate",
+             "unified_qp_psnr", "unified_qp_ssim", "unified_bitrates",
+             "fourdgc_psnr", "fourdgc_ssim", "fourdgc_bitrate"):
+    globals()[name] = [globals()[name][i] for i in args.scene_indices]
+
 # read the tested Pareto frontier
 
 ours_psnrs = []
@@ -99,10 +118,13 @@ for result_path in args.results:
             ours_bitrate = np.append(ours_bitrate, result["bitrate_kb"])
     print("loaded results from", result_path)
         
-    # reverse the arrays to have descending order of bitrate
-    ours_psnr = ours_psnr[::-1]
-    ours_ssim = ours_ssim[::-1]
-    ours_bitrate = ours_bitrate[::-1] * 30  # convert to kbps
+    if not len(ours_bitrate):
+        raise ValueError(f"No eligible results (PSNR >= 28) in {result_path}")
+    order = np.argsort(ours_bitrate)[::-1]
+    # Sort explicitly rather than relying on input JSON order.
+    ours_psnr = ours_psnr[order]
+    ours_ssim = ours_ssim[order]
+    ours_bitrate = ours_bitrate[order] * 30  # convert to kbps
     ours_psnrs.append(ours_psnr)
     ours_ssims.append(ours_ssim)
     ours_bitrates.append(ours_bitrate)
@@ -199,7 +221,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (12, 8)
 
 # 计算统计数据
-methods = ['HiCoM', '$V^3$', 'AdaGS']
+methods = ['HiCoM', '$V^3$', 'PrismGS']
 
 # Walking 统计数据
 walking_fpss, walking_violations, walking_psnrs, walking_ssims = [], [], [], []
@@ -392,37 +414,37 @@ for i in range(len(unified_qp_psnr)):
 
 HiCoM_data = []
 V3_data = []
-AdaGS_data = []
+PrismGS_data = []
 
 print("\n=== Walking Scenario ===")
 print("HiCoM: FPS =", np.mean(walking_fpss, axis=0)[0], ", Violation Rate =", np.mean(walking_violations, axis=0)[0], ", PSNR =", np.mean(walking_psnrs, axis=0)[0], ", SSIM =", np.mean(walking_ssims, axis=0)[0])
 print("$V^3$: FPS =", np.mean(walking_fpss, axis=0)[1], ", Violation Rate =", np.mean(walking_violations, axis=0)[1], ", PSNR =", np.mean(walking_psnrs, axis=0)[1], ", SSIM =", np.mean(walking_ssims, axis=0)[1])
 print("4DGC: FPS =", np.mean(walking_fpss, axis=0)[2], ", Violation Rate =", np.mean(walking_violations, axis=0)[2], ", PSNR =", np.mean(walking_psnrs, axis=0)[2], ", SSIM =", np.mean(walking_ssims, axis=0)[2])
-print("AdaGS: FPS =", np.mean(walking_fpss, axis=0)[3], ", Violation Rate =", np.mean(walking_violations, axis=0)[3], ", PSNR =", np.mean(walking_psnrs, axis=0)[3], ", SSIM =", np.mean(walking_ssims, axis=0)[3])
+print("PrismGS: FPS =", np.mean(walking_fpss, axis=0)[3], ", Violation Rate =", np.mean(walking_violations, axis=0)[3], ", PSNR =", np.mean(walking_psnrs, axis=0)[3], ", SSIM =", np.mean(walking_ssims, axis=0)[3])
 
 # the average of FPS deviation in each scene
 # print("FPS deviation (HiCoM):", np.mean(np.std(hicom_fps_walks, axis=1)))
 # print("FPS deviation (V3):", np.mean(np.std(unified_fps_walks, axis=1)))
-# print("FPS deviation (AdaGS):", np.mean(np.std(ours_fps_walks, axis=1)))
+# print("FPS deviation (PrismGS):", np.mean(np.std(ours_fps_walks, axis=1)))
 
 # the average of PSNR deviation in each scene
 # print("PSNR deviation (V3):", np.mean(np.std(unified_psnr_walks, axis=1)))
-# print("PSNR deviation (AdaGS):", np.mean(np.std(ours_psnr_walks, axis=1)))
+# print("PSNR deviation (PrismGS):", np.mean(np.std(ours_psnr_walks, axis=1)))
 
 print("\n=== Driving Scenario ===")
 print("HiCoM: FPS =", np.mean(driving_fpss, axis=0)[0], ", Violation Rate =", np.mean(driving_violations, axis=0)[0], ", PSNR =", np.mean(driving_psnrs, axis=0)[0], ", SSIM =", np.mean(driving_ssims, axis=0)[0])
 print("$V^3$: FPS =", np.mean(driving_fpss, axis=0)[1], ", Violation Rate =", np.mean(driving_violations, axis=0)[1], ", PSNR =", np.mean(driving_psnrs, axis=0)[1], ", SSIM =", np.mean(driving_ssims, axis=0)[1])
 print("4DGC: FPS =", np.mean(driving_fpss, axis=0)[2], ", Violation Rate =", np.mean(driving_violations, axis=0)[2], ", PSNR =", np.mean(driving_psnrs, axis=0)[2], ", SSIM =", np.mean(driving_ssims, axis=0)[2])
-print("AdaGS: FPS =", np.mean(driving_fpss, axis=0)[3], ", Violation Rate =", np.mean(driving_violations, axis=0)[3], ", PSNR =", np.mean(driving_psnrs, axis=0)[3], ", SSIM =", np.mean(driving_ssims, axis=0)[3])
+print("PrismGS: FPS =", np.mean(driving_fpss, axis=0)[3], ", Violation Rate =", np.mean(driving_violations, axis=0)[3], ", PSNR =", np.mean(driving_psnrs, axis=0)[3], ", SSIM =", np.mean(driving_ssims, axis=0)[3])
 
 # the average of FPS deviation in each scene
 print("FPS deviation (HiCoM):", np.mean(np.std(hicom_fps_drives, axis=1)))
 print("FPS deviation (V3):", np.mean(np.std(unified_fps_drives, axis=1)))
 print("FPS deviation (4DGC):", np.mean(np.std(fourdgc_fps_drives, axis=1)))
-print("FPS deviation (AdaGS):", np.mean(np.std(ours_fps_drives, axis=1)))
+print("FPS deviation (PrismGS):", np.mean(np.std(ours_fps_drives, axis=1)))
 
 # the average of PSNR deviation in each scene
 print("PSNR deviation (HiCoM):", np.mean(np.std(hicom_psnr_drives, axis=1)))
 print("PSNR deviation (V3):", np.mean(np.std(unified_psnr_drives, axis=1)))
 print("PSNR deviation (4DGC):", np.mean(np.std(fourdgc_psnr_drives, axis=1)))
-print("PSNR deviation (AdaGS):", np.mean(np.std(ours_psnr_drives, axis=1)))
+print("PSNR deviation (PrismGS):", np.mean(np.std(ours_psnr_drives, axis=1)))

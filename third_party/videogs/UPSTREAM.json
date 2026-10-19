@@ -1,0 +1,58 @@
+{
+  "repository": "https://github.com/AuthorityWang/VideoGS",
+  "commit": "3a858e5c18d1ff2ed0527623e03581ac27c0fa81",
+  "files_sha256": {
+    "prune_gaussian.py": "5e37e10fa69da38cedd3283d885432bbd6eb90f9c0673db1cecb87c286863bc6",
+    "README.md": "dceef4739bd15203cb088d52c7e1340dc5040fc66c27a3ba4678a68bfc0e08ad",
+    "train_prune.py": "8b80c53e25c12c00d7b17daca9f20793e8374cdceccc7c1217df738400a8a923",
+    "train_dynamic.py": "d69e6a66ce44b36c3a723ebd4f0f5077cf73e455ed8eb1393d7e466b48734c52",
+    "train.py": "be4d22f4bc69cc7cdbfbf7d6ac0b4fe1a88d82fc9b9e2414acecbfcf65441423",
+    "train_sequence.py": "487594fde370a1836a686a28c7defb9d3c01367f3ff81f446c7573506e98c46f",
+    "run.py": "fe604b1e08066c9ce54f9b62be88c57ba40f83df22dec2b432a75502b1b3260f",
+    "convert.py": "e534a5f64425412dc7a1ae4360f8caf3421167984bbaca307916d8a40ba16b64",
+    "requirements.txt": "054b16f837eb9f9b881ce69624d2b726d3e03c8454722f42cb2a76bea33ce541",
+    "scene/global_rt_field.py": "9e7d7b1b7e64f47ff8aa2dcd01fadac68d414e7ea780900e3ba4848c8f71835e",
+    "scene/dataset_readers.py": "9a9a4725886d765e17b410148d85ee75913b45272ac428de40b259ee35420fdd",
+    "scene/global_t_field.py": "ef0bc51d716bf010c4d80ab423e9d501c47653226600d8b4420961a1715c1b20",
+    "scene/gaussian_model.py": "491f8259c723a2d7f844ee5b174cb6c747e9b38a3733f73210a00ffe8ae5d6b9",
+    "scene/global_rtc_field.py": "eb4c438cd79ecbb14edf9d8142a99554acc5788c32d71bb76270b1852c23eb2a",
+    "scene/global_t_field_wo_hash.py": "79389abe62ed023d1b5e96ef24e0a6ec0936de677acb83dc4e2160216b396e1c",
+    "scene/__init__.py": "1f8edded173b8e329f19adf1dc36f2939ccfbe3b8237c32d29fe25c4d498f4a4",
+    "scene/colmap_loader.py": "6948ce06366e1f727ddffc39a445bf4b6873824f02abc39df63eb0c8f0fb3f36",
+    "scene/cameras.py": "f5ff25ba0f3a56485cf77c3d396cd2ff66daf18be981b16ba3bbfb887e9f12c0",
+    "gaussian_renderer/network_gui.py": "7e392b8122a8e1359b4550769eac06190806a8c2eeb7f5aa7cbd025738dedf89",
+    "gaussian_renderer/__init__.py": "75fcc86a57d27d9ea55b2904a4faaf075e7f73dba8c54bcb6cbd4c02c4884084",
+    "config/config_hash.json": "cbe89653bf78a35d7f0cfaa94828b074c56b445149d88da467fd657722349a5d",
+    "compress/compress_image_2_video.py": "1901cf362233c032a260bb9f1003dac93679054c771eee0ba412506a00aab419",
+    "compress/compress_ckpt_2_image.py": "4c1dea13a200ab81115f632fe929ed0d09cfbd41f1a5fb4a493c6d167a745ea2",
+    "compress/decompress_video_2_ckpt.py": "a562f54b0aab79b607391009610d804f260403339bcf57ad0bc1f2fc0892fc5f",
+    "compress/compress_ckpt_2_image_precompute.py": "3eaea5cfd6c71fb103bd8e6d8d0c116505b79d906e9dca378bffb553f28438a6",
+    "utils/loss_utils.py": "53e4824dd41f847bd9c1ce146162886d1d63460acafbfed9db1f3d84dfe63f5f",
+    "utils/camera_utils.py": "a450a6bcd3630a183f0a6be1b75a89e91444471b12f460613b8beb23a9c3bcef",
+    "utils/system_utils.py": "be01c02d3118c5d53808bc04efccd00c35a705a43a87c3583ea2f4752bc48553",
+    "utils/sh_utils.py": "7d1ff267546390635e6d1f68c4f88c4a8b052482d5c9be1d32f06bc69e9a96e7",
+    "utils/graphics_utils.py": "d6e75de8161e98b72c2691e8a944a842e1b6625d2306035d079c868ac632edfc",
+    "utils/image_utils.py": "872a4507773b9378db9e0fefc90104dc474b27551af18ada73f000a7a00a4ba0",
+    "utils/general_utils.py": "97553507caa4f3e6849919d9658b0b0da064e6c8f19142045da79072171ffa51",
+    "arguments/__init__.py": "316ca15e347f284b720ae32610539395174566236cd0172e194f8fe479c1f8f2",
+    "preprocess/undistortion.py": "ac37883ff0bbf0a4e593c722b36ca88ba2bbcb326cd0e8107c8928e8e214fbd4",
+    "preprocess/hifi4g_process.py": "3a7a8af871978a72562a96939855aa8d03894cbbf809b1cd534182af385b2e64",
+    "preprocess/colmap_helper.py": "d96f1f72adb162d8b427c304c76e3c006f03b93a4c3ad75f29fcdc780e4c32a3",
+    "preprocess/calibration.py": "2cc83d7f41b7898ce3e70971b14d91bd669ef28ca4d987ce41cd9dd330947848",
+    "preprocess/colmap2k.py": "82e03a527b9dec8bf7e364f8abeb7ad8ee4b6027a545524938d50f931b5800fd",
+    "lpipsPyTorch/__init__.py": "a657ce7355782eb970f95fd0d2e26eec5b9023212d2b655814da6e15b70510b4",
+    "lpipsPyTorch/modules/networks.py": "dfa6f152b0e3fbc23ac3bfaea52b46e9473e64ad539ea22ab030c57af51c7f14",
+    "lpipsPyTorch/modules/utils.py": "1bd4a7d4e7b43215497675ed852936fe4f27e7ea3068afe0b0e1f7cfb6c48570",
+    "lpipsPyTorch/modules/lpips.py": "3bece0b9cf9943af5b043026458819d259df9bfe7c2a1d3ffc6c905e7e5aa2b4"
+  },
+  "extensions": {
+    "diff-gaussian-rasterization": {
+      "url": "https://github.com/graphdeco-inria/diff-gaussian-rasterization.git",
+      "commit": "59f5f77e3ddbac3ed9db93ec2cfe99ed6c5d121d"
+    },
+    "simple-knn": {
+      "url": "https://gitlab.inria.fr/bkerbl/simple-knn.git",
+      "commit": "86710c2d4b46680c02301765dd79e465819c8f19"
+    }
+  }
+}

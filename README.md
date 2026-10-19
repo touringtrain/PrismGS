@@ -1,170 +1,261 @@
 # [ACM MM 2026] PrismGS
 
-PyTorch-based research code release for **PrismGS: Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming**.
+**PrismGS: Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming**
+Jinghang Li, Zhe Wang, Yifei Zhu · Shanghai Jiao Tong University
 
-Paper: [PrismGS_0402_1856.pdf](./PrismGS_0402_1856.pdf)
+[Project page and demo](https://touringtrain.github.io/PrismGS/)
 
-Project Page: `https://touringtrain.github.io/PrismGS/`
+PrismGS combines regularized keyframe reconstruction, V³ residual dynamic training,
+attribute video compression, measured quality modeling, and rate allocation.
+The maintained `python -m prismgs` interface contains the full pipeline from
+**prepared, calibrated multiview data and initialization points** to measured
+streaming results. Runtime code and rasterizer/KNN source are included here;
+a neighboring VideoGS or AceGS checkout is not required.
 
-PrismGS studies bandwidth-adaptive streaming for dynamic 4D Gaussian scenes. This repository is a cleaned and self-contained open-source release reorganized from our internal research workspace, with bundled example assets, evaluation scripts, and plotting code.
-
-## Abstract
-
-Dynamic 4D Gaussian scene streaming requires balancing visual quality, storage cost, and transmission bandwidth under rapidly changing network conditions. PrismGS addresses this problem with a coordinated training-and-compression pipeline that models the rate-distortion behavior of different Gaussian attribute groups and selects Pareto-optimal compression configurations for streaming. Instead of relying on a single uniform compression level, PrismGS performs attribute-aware allocation across geometry- and appearance-related components, enabling more effective bitrate use under bandwidth constraints. This repository includes the core quality modeling and Pareto frontier generation code, bandwidth-trace evaluation on dynamic scenes, and a bundled example scene for reproducing the main workflow.
-
-## Demo Video
-
-<p align="center">
-  <video src="./PrismGS%20video%20demo.mp4" controls width="100%"></video>
-</p>
-
-Demo link: [PrismGS video demo](./PrismGS%20video%20demo.mp4)
-
-For a cleaner video-first presentation, use the GitHub Pages site in [`docs/`](./docs/).
-
-## Overview
-
-PrismGS is organized around the following pipeline:
-
-1. Convert reconstructed 4D Gaussian checkpoints into feature images.
-2. Compress feature images into videos under different QP settings.
-3. Reconstruct anchor checkpoints from compressed feature videos.
-4. Measure attribute-wise sensitivity and fit a quality model.
-5. Generate Pareto-optimal compression configurations.
-6. Evaluate streaming quality and smoothness under real bandwidth traces.
-
-## Repository Structure
-
-```text
-PrismGS/
-├── core/                  # Core compression, decompression, quality modeling, and testing scripts
-├── evaluation/            # Bandwidth-trace evaluation scripts and bundled Lumos-5G trace
-├── plot/                  # Paper plotting scripts and generated figures
-├── quality_testset/       # Pareto-frontier checkpoints and comparison utilities
-├── assets/
-│   ├── example_scene/     # Self-contained bundled example scene assets
-│   ├── visualization/     # Selected figures and qualitative outputs
-│   └── original_readme.md # Original internal project notes for reference
-├── video_scene_process/   # Visualization preprocessing helpers
-├── video_scene_process_new/
-├── requirements.txt
-└── PrismGS_0402_1856.pdf
-```
+Raw datasets and initialization points must be obtained/prepared separately.
+Full default-length training and camera-ready metrics have not yet been reproduced
+with this release. See [verification](docs/verification.md) for the exact tests.
 
 ## Installation
 
-1. Create and activate a fresh conda environment:
-
-   ```bash
-   conda create -n prismgs python=3.10 -y
-   conda activate prismgs
-   ```
-
-2. Install Python dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Make sure `ffmpeg` is available:
-
-   ```bash
-   ffmpeg -version
-   ```
-
-## Dependency Notes
-
-This repository has two levels of dependencies.
-
-### 1. Core analysis environment
-
-The packaged dependencies in `requirements.txt` are sufficient for:
-
-- Pareto frontier generation
-- bandwidth-trace evaluation
-- most plotting scripts
-- reading and analyzing the bundled example assets
-
-### 2. Full rendering / reconstruction environment
-
-Some scripts in `core/` depend on external 3DGS / VideoGS components used in the original project environment. In particular, `core/render_test.py` expects modules such as:
-
-- `torch`
-- `scene`
-- `gaussian_renderer`
-- `utils.*`
-- `arguments`
-
-These modules are not fully vendored in this repository. If you want to run rendering-based evaluation end-to-end, please additionally prepare the original 3DGS / VideoGS environment used by your project.
-
-## Dataset
-
-This release does not include the full raw datasets used in the paper.
-
-- For 4D Gaussian reconstruction, the project uses dynamic multi-view scenes such as HiFi4G and N3DV-style sequences.
-- For network evaluation, the repository includes the Lumos-5G throughput trace in [evaluation/Lumos5G-v1.0.csv](/home/new_disk/ljh/PrismGS/evaluation/Lumos5G-v1.0.csv).
-
-To keep the repository self-contained, we bundle one example scene under `assets/example_scene/`, including:
-
-- `feature_video/`
-- `pareto_frontier_dp_4k_4.json`
-- `test_results.json`
-- lightweight metadata files (`min_max.json`, `viewer_min_max.json`, `group_info.json`)
-
-To make the repository suitable for GitHub release, large local experimental caches and heavyweight intermediate results were removed from the public repo tree during cleanup.
-
-## Quick Start
-
-Generate a Pareto frontier from the bundled calibration setup:
+Linux, an NVIDIA GPU, a compatible CUDA toolkit/compiler, and FFmpeg with
+`libx264` are required for training and rendering. The existing `videogs`
+environment was used for GPU verification (Python 3.8.20, PyTorch 2.1.2+cu118).
+For a fresh environment, an example setup is:
 
 ```bash
-cd core
-python quality_model.py
+conda create -n prismgs python=3.10 -y
+conda activate prismgs
+pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+pip install --no-build-isolation ./submodules/simple-knn
+pip install --no-build-isolation ./submodules/diff-gaussian-rasterization
+pip install 'git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch'
+pip install --no-build-isolation -e .
+ffmpeg -version
 ```
 
-Run bandwidth evaluation on the bundled example result:
+Install FFmpeg using your operating system package manager if needed. Match the
+CUDA compiler to the PyTorch CUDA build. The commands above are installation
+instructions, not a claim of a verified fresh build. Training uses an editable
+source installation because the backend is shipped alongside the Python package.
+
+## Download and prepare HiFi4G
+
+Obtain HiFi4G from the [official dataset repository](https://github.com/moqiyinlun/HiFi4G_Dataset)
+following its access instructions and terms. Dataset images and point clouds are
+not included in our Git repository or source archive. The local example copy is
+only for development; see [datasets/README.md](datasets/README.md).
+
+For `4k_1_greeting`, select frames **0–19**. Frame numbers refer to time; each
+frame folder must contain all calibrated camera views, not a single video image.
+Use the dataset's **undistorted, white-background** images and their matching
+COLMAP calibration. Keep original camera filenames and resolution. Do not mix
+calibration for distorted images with undistorted images.
+
+The preparation command expects the following input layout (the actual download
+folder names can differ; pass their real paths with the two arguments):
+
+```text
+/path/to/download/4k_1_greeting/
+  image_undistortion_white/       # some releases call this image_white_undistortion
+    0/0.png ... 80.png           # camera IDs; use actual supplied names
+    1/0.png ... 80.png
+    ...
+    19/0.png ... 80.png
+  colmap/sparse/0/
+    cameras.bin                 # PINHOLE/SIMPLE_PINHOLE intrinsics
+    images.bin                  # camera poses and image names
+    points3D.bin                # initialization points (or points3D.ply/.txt)
+```
+
+`cameras.txt`/`images.txt` are also accepted instead of the binary camera files.
+The calibration may live inside the image folder in some releases. Pass the
+actual model directory; do not rename or regenerate calibration unnecessarily.
+
+From the repository root, arrange your downloaded data without moving or changing
+the originals:
 
 ```bash
-cd evaluation
-python overall_performance.py --results ../assets/example_scene/test_results.json
+python scripts/prepare_hifi4g.py \
+  --images /path/to/download/4k_1_greeting/image_undistortion_white \
+  --calibration /path/to/download/4k_1_greeting/colmap/sparse/0 \
+  --output datasets/4k_1_greeting --start 0 --end 20
 ```
 
-## Main Components
+Use an empty output directory. The script checks calibrated image filenames,
+rejects distorted camera models, copies images without resizing/recompression,
+and places the fixed-camera calibration and initialization points in every frame.
+It also accepts input frame folders already containing `images/`. The result is:
 
-### Core scripts
+```text
+datasets/4k_1_greeting/
+  preparation.json
+  0/
+    images/                     # all calibrated camera images
+    sparse/0/
+      cameras.bin
+      images.bin
+      points3D.bin               # or supplied points3D.ply/.txt
+  1/
+    images/
+    sparse/0/                   # shared fixed-camera calibration
+  ...
+  19/
+    images/
+    sparse/0/
+```
 
-- `core/compress_image_2_video_sensitivity.py`: compress feature images into attribute videos under multiple QP settings
-- `core/decompress_video_2_ckpt_sensitivity.py`: reconstruct sensitivity checkpoints from compressed feature videos
-- `core/decompress_video_2_ckpt_testset.py`: reconstruct checkpoints for Pareto-frontier testing
-- `core/quality_model.py`: fit the quality model and generate Pareto frontiers
-- `core/render_test.py`: rendering-based evaluation entry that depends on the upstream 3DGS / VideoGS environment
+This **COLMAP layout is directly trainable**: `transforms.json` and a separate
+NeuS2 run are not required when valid COLMAP initialization points are supplied.
+The loader converts `points3D.bin/.txt` to `points3D.ply` on first use if necessary.
+Sharing the model assumes a fixed camera rig; moving cameras need per-frame poses.
 
-### Evaluation
+If your download contains only distorted images, undistort them with COLMAP first;
+if it lacks initialization points, reconstruct/provide them before training.
+[Detailed preparation instructions](docs/data_preparation.md) cover these cases
+and the alternative `transforms.json` layout. The arrangement script performs
+no undistortion, background removal, camera calibration or point reconstruction.
 
-- `evaluation/overall_performance.py`: evaluate streaming quality and smoothness under Lumos-5G bandwidth traces
-- `plot/`: scripts used to generate figures in the paper
+## Download and prepare N3DV
 
-## Notes
+The paper also uses **Neural 3D Video (N3DV / DyNeRF)**. Obtain it through the
+[official project page](https://neural-3d-video.github.io/). A typical scene
+contains per-camera `camXX.mp4` videos and `poses_bounds.npy`.
 
-- This repository is a cleaned release from a much larger research workspace.
-- The bundled example scene is intended as the main entry point for understanding the codebase.
-- `quality_testset/` is preserved because it contains useful checked results, but it is still one of the larger folders in the repository.
-- Several plotting scripts still reference additional scene-specific experimental outputs that were not bundled into this public release.
-- Large local-only results were moved out of the repository during cleanup to keep the public release lightweight.
+1. Extract identical frame indices from every camera video without temporal
+   resampling, and arrange them as `FRAME/images/CAMERA.png`.
+2. Prepare matching undistorted COLMAP cameras and initialization points under
+   `FRAME/sparse/0/`, or per-frame `transforms.json` plus `points3d.ply`.
+   The loader does not directly accept videos or `poses_bounds.npy`.
+3. Run the same `python -m prismgs run` pipeline, pointing `--dataset` at the
+   prepared scene. Select the appropriate background and held-out views.
+
+```text
+datasets/coffee_martini/
+  0/images/cam00.png ... camXX.png
+  0/sparse/0/                  # cameras, poses and initialization points
+  1/images/cam00.png ... camXX.png
+  1/sparse/0/
+  ...
+```
+
+The [N3DV preparation guide](docs/data_preparation.md#neural-3d-video-n3dv)
+includes extraction commands, calibration/conversion requirements, arrangement,
+and a short test command. Raw N3DV conversion and paper-specific evaluation
+splits are not automatically inferred; the N3DV recipe remains unverified end
+to end in this release. Dataset files are not shipped in Git or source exports.
+
+## One-command pipeline
+
+From an activated `videogs` environment, or the environment installed above:
+
+```bash
+python -m prismgs run --dataset /path/to/prepared/scene --output runs/scene \
+  --start 100 --end 105 --group-size 5 --qps 0 10 20 30 40 50
+```
+
+`--end` is exclusive. Use a fresh output directory. The command performs:
+
+1. Regularized keyframe training, pruning and residual dynamic training.
+2. SH0 checkpoint packing and per-attribute H.264 encoding.
+3. Keyframe sensitivity measurements with other attributes fixed at QP=0.
+4. A measured quality/size profile and discretized DP frontier.
+5. Parallel decoding and actual rendering of every selected configuration and uniform-QP controls.
+6. Walking/driving throughput simulation using the bundled Lumos5G trace.
+
+A short execution test (not a converged model or paper-quality experiment):
+
+```bash
+python -m prismgs run --dataset /path/to/4k_4_dancing --output runs/smoke \
+  --start 100 --end 102 --group-size 2 --resolution 8 \
+  --keyframe-iterations 2 --prune-iterations 2 \
+  --motion-iterations 2 --finetune-iterations 2 \
+  --qps 0 40 --cameras 23 --workers 2 --step-kb 0.1
+```
+
+Omit `--cameras` to evaluate every view in the selected split. The default
+`--split train` is an in-sample diagnostic. Use `--split test` for the loader's
+held-out split; the launcher then excludes those views during training too.
+Use `--black-background` consistently for scenes requiring a black background.
+Use `--checkpoints /path/to/checkpoint` to explicitly reuse existing training
+outputs. QP=0 must be encoded; optimization only selects measured QP levels.
+
+Outputs under `--output` include:
+
+| Output | Contents |
+|---|---|
+| `checkpoint/` | Trained Gaussian checkpoints |
+| `feature_image/`, `feature_video/` | Attribute planes, videos and versioned metadata |
+| `calibration/profile.json` | Scene-specific measured anchors and sizes |
+| `frontier.json` | Predicted Pareto configurations |
+| `measured_rd.json` | Actually rendered PSNR/SSIM and payload sizes |
+| `streaming_walking.json`, `streaming_driving.json` | Throughput simulation results |
+| `run_config.json`, `stages.json` | Run options and completed-stage timings |
+
+## Individual stages
+
+`python -m prismgs --help` lists `train`, `pack`, `encode`, `decode`, `render`,
+`calibrate`, `frontier`, `evaluate`, and `run`. Each accepts `--help`.
+See [pipeline details](docs/pipeline.md) for commands and measurement conventions.
+The [calibration reproduction guide](docs/calibration.md) gives the paper's
+single-attribute measurement protocol, commands, normalized quality curves and
+local verification results.
+The [decoding verification guide](docs/decoding.md) tests every frontier
+configuration, reconstructed PLY integrity and serial/parallel consistency.
+For the paper's batched GPU attribute reconstruction, use `decode --device cuda`
+or `calibrate`/`run --decode-device cuda`; see [GPU decoding](docs/gpu_decoding.md).
+
+## Scope and limitations
+
+- The maintained codec supports **SH degree 0**. It stores raw Gaussian parameters,
+  16-bit positions and 8-bit appearance/opacity/scale/rotation planes. No extra
+  activation is applied during reconstruction. High position bytes use QP=0.
+- The codec uses its own versioned `metadata.json`. Legacy feature videos under
+  `assets/example_scene/` use another format; repack checkpoints for the new CLI.
+- Calibration renders the first keyframe; rate measurements cover all supplied
+  frames. Model predictions are verified on all requested frames/views afterwards.
+- Sizes are decimal **KB/frame of video payload**, including MP4 overhead and
+  excluding metadata, checkpoints and dataset transfer. DP is discretized;
+  smaller `--step-kb` retains more candidates, with more computation.
+- The bandwidth evaluation is a throughput-only model, without buffering, RTT,
+  packet loss or decode cost. It is not a network streaming client.
+- Legacy `core/`, `evaluation/`, `plot/` and `quality_testset/` remain for historical
+  comparison. Their embedded measurements and figures are not refreshed paper results.
+- All configurations on the generated frontier are decoded/rendered. Full-scene
+  calibration and evaluation can take substantial time and disk space.
+
+## Verification and source export
+
+```bash
+python -m unittest discover -s tests -v
+python scripts/export_source.py --output dist/PrismGS-source.tar.gz
+```
+
+The export contains maintained runtime source, CUDA extension source and licenses,
+preprocessing helpers and tests. It excludes datasets, throughput traces,
+trained outputs, generated reports, historical media and compiled binaries.
+For streaming evaluation from a source export, provide a trace with --trace. See
+[SOURCE_MANIFEST.md](SOURCE_MANIFEST.md) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+A license for original contributions remains to be selected by the authors.
 
 ## Citation
 
-If you find this repository useful, please cite our paper.
-
 ```bibtex
 @inproceedings{prismgs2026,
+  author={Li, Jinghang and Wang, Zhe and Zhu, Yifei},
   title={PrismGS: Coordinated Training and Compression for Pareto-Optimal 4D Gaussian Streaming},
   booktitle={Proceedings of the ACM International Conference on Multimedia},
   year={2026}
 }
 ```
 
-## Acknowledgement
+Training and rendering build on [3DGS](https://github.com/graphdeco-inria/gaussian-splatting)
+and [V³ / VideoGS](https://github.com/AuthorityWang/VideoGS).
 
-- [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting)
-- [VideoGS / V^3](https://github.com/AuthorityWang/VideoGS)
+### Anchor measurement protocol
+
+Compression quality is evaluated on the initial frame (`--start`) of the
+20-frame sequence, matching the paper's anchor test. Training and encoding cover
+the entire sequence; bitrate uses the average encoded video payload per frame.
+Camera selection applies to the anchor frame.

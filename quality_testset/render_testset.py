@@ -1,68 +1,52 @@
-import os
+"""Evaluate decoded Pareto checkpoints using an external VideoGS renderer."""
+import argparse
 import json
+from pathlib import Path
+import re
+import subprocess
+import sys
 
-stem_dir = "checkpoints"
-dataset_path = "../../videogs/VideoGS/dataset/4k_5_umbrella/"
 
-# check all dirs starting with "test" in stem_dir
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--pareto', type=Path, required=True)
+    parser.add_argument('--checkpoints', type=Path, required=True)
+    parser.add_argument('--dataset', type=Path, required=True)
+    parser.add_argument('--renderer', type=Path, required=True)
+    parser.add_argument('--output', type=Path, default=Path('test_results.json'))
+    args = parser.parse_args()
+    for path in (args.pareto, args.checkpoints, args.dataset, args.renderer):
+        if not path.exists():
+            parser.error(f'Path does not exist: {path}')
+    points = json.loads(args.pareto.read_text())
+    results = []
+    keys = ('position_low', 'color', 'opacity', 'scale', 'rotation')
+    for point in points:
+        config = {key: point['config'][key] for key in keys}
+        checkpoint = args.checkpoints / ('test_' + '_'.join(str(config[k]) for k in keys))
+        if not checkpoint.is_dir():
+            raise FileNotFoundError(checkpoint)
+        run = subprocess.run(
+            [sys.executable, str(args.renderer.resolve()),
+             '--model_path', str(checkpoint.resolve()),
+             '--source_path', str(args.dataset.resolve()),
+             '--output_dir', str(checkpoint.resolve())],
+            capture_output=True, text=True, check=True,
+        )
+        (checkpoint / 'eval.txt').write_text(run.stdout)
+        metrics = {}
+        for metric in ('PSNR', 'SSIM'):
+            values = re.findall(rf'{metric}:\s*([0-9.eE+\-]+)', run.stdout)
+            if len(values) != 1:
+                raise ValueError(f'Expected one aggregate {metric}, got {len(values)}; '
+                                 'use a renderer that reports aggregate evaluation metrics.')
+            metrics[metric.lower()] = float(values[0])
+        results.append({**config, 'bitrate_kb': point['bitrate_kb'], **metrics})
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    temporary = args.output.with_suffix(args.output.suffix + '.tmp')
+    temporary.write_text(json.dumps(results, indent=2, allow_nan=False) + '\n')
+    temporary.replace(args.output)
 
-test_qp_values = []
-size_list = []
 
-# empty the test_results.json file
-with open("test_results.json", "w") as f:
-    f.write("[\n")
-
-with open("../pareto_frontier_dp.json", "r") as f:
-    pareto_data = json.load(f)
-    for item in pareto_data:
-        config = item["config"]
-        qp_list = [
-            config["position_low"],
-            config["color"],
-            config["opacity"],
-            config["scale"],
-            config["rotation"]
-        ]
-        test_qp_values.append(qp_list)
-        size_list.append(item["bitrate_kb"])
-    
-for test_qp, size in zip(test_qp_values, size_list):
-    dir_name = f"test_{test_qp[0]}_{test_qp[1]}_{test_qp[2]}_{test_qp[3]}_{test_qp[4]}"
-    model_path = f"{stem_dir}/{dir_name}/"
-    source_path = dataset_path
-    output_dir = f"{stem_dir}/{dir_name}/"
-    eval_file = f"{stem_dir}/{dir_name}/eval.txt"
-    command = f"python ../../videogs/VideoGS/render_test.py --model_path {model_path} --source_path {source_path} --output_dir {output_dir} > {eval_file}"
-    os.system(command)
-    
-    # read the eval.txt to get the psnr and ssim
-    psnr = 0
-    ssim = 0
-    with open(eval_file, "r") as f:
-        lines = f.readlines()
-        for line in lines:
-            if "PSNR" in line:
-                psnr = line.split(":")[-1].strip()
-            if "SSIM" in line:
-                ssim = line.split(":")[-1].strip()
-    print(f"Results for {dir_name}: PSNR = {psnr}, SSIM = {ssim}")
-
-    # save the results to a json file, with indentation
-    results = {
-        "position_low": test_qp[0],
-        "color": test_qp[1],
-        "opacity": test_qp[2],
-        "scale": test_qp[3],
-        "rotation": test_qp[4],
-        "bitrate_kb": size,
-        "psnr": float(psnr.split()[0]),
-        "ssim": float(ssim)
-    }
-    
-    with open("test_results.json", "a") as f:
-        json.dump(results, f, indent=2)
-        f.write(",\n")  # 添加逗号和换行
-
-with open("test_results.json", "a") as f:
-    f.write("\n]")
+if __name__ == '__main__':
+    main()

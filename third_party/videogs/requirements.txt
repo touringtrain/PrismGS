@@ -1,0 +1,13 @@
+plyfile
+tqdm
+git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
+pymeshlab
+open3d
+commentjson
+imageio
+pybind11
+scipy
+opencv-python
+trimesh
+tensorboard
+natsort

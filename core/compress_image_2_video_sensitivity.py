@@ -9,8 +9,8 @@ if __name__ == "__main__":
     parser.add_argument("--frame_start", type=int, default=95)
     parser.add_argument("--frame_end", type=int, default=115)
     parser.add_argument("--group_size", type=int, default=20)
-    parser.add_argument("--output_path", type=str)
-    parser.add_argument("--qp", type=int, default=25)
+    parser.add_argument("--output_path", type=str, required=True)
+    parser.add_argument("--qp", type=int, nargs="+", default=[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50])
 
     args = parser.parse_args()
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # qps = [args.qp]
     # qps = [28, 30, 32, 35, 37, 40, 50]
     # qps = [43, 45, 47, 50]
-    qps = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+    qps = args.qp
     # qps = [0, 10, 20, 30, 40, 50]
     # qps = [5, 15, 25, 35, 45]
     # qps = [15]

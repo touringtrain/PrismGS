@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prismgs"
+version = "0.1.0"
+description = "Coordinated training and compression for 4D Gaussian streaming"
+requires-python = ">=3.8"
+dynamic = ["dependencies"]
+
+[project.scripts]
+prismgs = "prismgs.__main__:main"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["prismgs*"]
