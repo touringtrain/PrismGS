@@ -18,27 +18,58 @@ with this release. See [verification](docs/verification.md) for the exact tests.
 
 ## Installation
 
-Linux, an NVIDIA GPU, a compatible CUDA toolkit/compiler, and FFmpeg with
-`libx264` are required for training and rendering. The existing `videogs`
-environment was used for GPU verification (Python 3.8.20, PyTorch 2.1.2+cu118).
-For a fresh environment, an example setup is:
+Requirements: Linux, an NVIDIA GPU with a CUDA-compatible driver, a CUDA toolkit
+with `nvcc`, a C++ compiler, and Conda. FFmpeg must include the `libx264` encoder.
+The steps below use Python 3.10 and PyTorch 2.1.2 with CUDA 11.8; install a
+matching CUDA 11.8 toolkit before building the extensions.
+
+Clone the repository and create a dedicated environment:
 
 ```bash
+git clone https://github.com/touringtrain/PrismGS.git
+cd PrismGS
 conda create -n prismgs python=3.10 -y
 conda activate prismgs
-pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
-pip install -r requirements.txt
-pip install --no-build-isolation ./submodules/simple-knn
-pip install --no-build-isolation ./submodules/diff-gaussian-rasterization
-pip install 'git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch'
-pip install --no-build-isolation -e .
-ffmpeg -version
+python -m pip install --upgrade pip setuptools wheel
 ```
 
-Install FFmpeg using your operating system package manager if needed. Match the
-CUDA compiler to the PyTorch CUDA build. The commands above are installation
-instructions, not a claim of a verified fresh build. Training uses an editable
-source installation because the backend is shipped alongside the Python package.
+Install FFmpeg and build tools using your system package manager. On Ubuntu:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y build-essential git ffmpeg
+```
+
+Install PyTorch, Python dependencies, and the CUDA extensions:
+
+```bash
+python -m pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+python -m pip install -r requirements.txt
+python -m pip install --no-build-isolation ./submodules/simple-knn
+python -m pip install --no-build-isolation ./submodules/diff-gaussian-rasterization
+python -m pip install --no-build-isolation 'git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch'
+python -m pip install --no-build-isolation -e .
+```
+
+Keep the checkout available: the editable installation loads the training backend
+and bundled extension source from this repository. If the CUDA toolkit is installed
+outside the default search path, set `CUDA_HOME` to its installation directory and
+add its `bin` directory to `PATH` before building.
+
+Check the installation:
+
+```bash
+nvcc --version
+ffmpeg -hide_banner -h encoder=libx264
+python -c "import torch; assert torch.cuda.is_available(); import simple_knn._C, diff_gaussian_rasterization, tinycudann; print(torch.cuda.get_device_name(0))"
+python -m prismgs --help
+```
+
+Optional raw-data preparation helpers require additional dependencies:
+
+```bash
+python -m pip install -r requirements-preprocess.txt
+```
 
 ## Download and prepare HiFi4G
 
@@ -148,7 +179,7 @@ to end in this release. Dataset files are not shipped in Git or source exports.
 
 ## One-command pipeline
 
-From an activated `videogs` environment, or the environment installed above:
+From the activated `prismgs` environment:
 
 ```bash
 python -m prismgs run --dataset /path/to/prepared/scene --output runs/scene \
