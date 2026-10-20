@@ -8,16 +8,16 @@ the renderer applies their activations.
 
 ## Reproduce the test after calibration
 
-From the repository root in the `videogs` CUDA environment:
+From the repository root in an environment with CUDA enabled:
 
 ```bash
 PYTHONPATH=. python scripts/verify_decode.py \
-  --videos runs/greeting_20_full/feature_video \
+  --videos RUN/feature_video \
   --dataset datasets/4k_1_greeting \
-  --profile runs/greeting_20_calibration/profile.json \
-  --frontier runs/greeting_20_calibration/frontier.json \
-  --original-checkpoints runs/greeting_20_full/checkpoint \
-  --output runs/greeting_20_decode --workers 2
+  --profile RUN/calibration/profile.json \
+  --frontier RUN/frontier.json \
+  --original-checkpoints RUN/checkpoint \
+  --output RUN/decode --workers 2
 ```
 
 Use a fresh output directory. The script deduplicates the frontier and uniform
@@ -66,26 +66,3 @@ from CUDA upload/reconstruction events. Neither is a paper throughput claim.
 
 Quality uses the initial-frame anchor protocol. The two extra dynamic frames
 are diagnostic checks, not a full-sequence quality aggregate or held-out evaluation.
-
-## CPU local result: 2026-10-19
-
-The test passed on `4k_1_greeting` frames 0–19, using the new calibration profile
-and frontier, resolution divisor 2, white background, all 81 training views.
-See machine-readable verification (local file: `decoding_verification.json`).
-
-- 92 frontier points plus six uniform controls reduced to 96 unique configurations.
-  All 1,920 decoded checkpoints passed integrity and range checks.
-- 7,776 fresh initial-frame renders reproduced prior PSNR/SSIM exactly; selected
-  video sizes also matched exactly. QP=0 baseline PSNR was 35.8223 dB.
-- Low/middle/high rate configurations passed serial/parallel byte equality on
-  all 20 frames (60 additional checkpoints). Both uniform and mixed-QP CLI
-  invocations matched the verification runner (40 additional checkpoints).
-- The mixed configuration `{position_low:40, color:30, opacity:20, scale:20,
-  rotation:20}` rendered frames 10 and 19 in all views: 162 records, mean
-  PSNR 33.5437 dB and SSIM 0.98075. All per-view PSNR/SSIM matched prior renders.
-- All nine regression tests passed, including the extended codec test.
-
-Measured CPU decoding/reconstruction/PLY writing for the 96 main configurations
-took 73.695 seconds in total. This is a single local correctness run, with cache
-effects and rendering between decodes; it is not a controlled throughput benchmark.
-Full outputs and logs remain under `runs/greeting_20_decode/`.

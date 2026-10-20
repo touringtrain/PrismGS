@@ -65,7 +65,7 @@ prepared first. No verified one-command raw-images-to-NeuS2 recipe is claimed.
 
 ## Alternative transforms layout
 
-If using the recovered VideoGS transforms loader rather than COLMAP, each frame
+If using the transforms loader rather than COLMAP, each frame
 must contain:
 
 ```text
@@ -93,7 +93,7 @@ After preparing frames 0–19, start with two frames:
 
 ```bash
 python -m prismgs run --dataset datasets/4k_1_greeting \
-  --output runs/greeting_smoke --start 0 --end 2 --group-size 2 \
+  --output runs/smoke --start 0 --end 2 --group-size 2 \
   --resolution 8 --keyframe-iterations 2 --prune-iterations 2 \
   --motion-iterations 2 --finetune-iterations 2 \
   --qps 0 40 --cameras 23 --workers 2 --step-kb 0.1
@@ -179,7 +179,7 @@ the supported camera formats before invoking the main pipeline:
   and do not replace an initialization point cloud.
 
 No verified automatic raw-N3DV pose-conversion/triangulation command is included
-in the maintained interface. The original local `n3v2blender.py` mixes extraction,
+in the maintained interface. The dataset-specific `n3v2blender.py` mixes extraction,
 pose changes, COLMAP and dense reconstruction with scene-specific assumptions;
 it is intentionally not presented as a working general converter. A generic
 DyNeRF transforms JSON is not necessarily compatible: this loader expects
@@ -207,7 +207,7 @@ its `sparse/0/` rather than copying the first frame's model.
 
 ```bash
 python -m prismgs run --dataset datasets/coffee_martini \
-  --output runs/coffee_martini_smoke --start 0 --end 2 --group-size 2 \
+  --output runs/smoke --start 0 --end 2 --group-size 2 \
   --resolution 8 --keyframe-iterations 2 --prune-iterations 2 \
   --motion-iterations 2 --finetune-iterations 2 \
   --qps 0 40 --workers 2 --step-kb 0.1 --split test --black-background
@@ -219,5 +219,5 @@ camera index is used here. `--split test` uses the bundled loader's held-out
 split (COLMAP: every eighth view; transforms: seeded 30% split). This is **not**
 a claim of matching the official N3DV or paper split: explicitly establish and
 record the required view split before reporting comparable benchmark numbers.
-This N3DV preparation/run recipe has not yet been validated end to end in this
-release; the recorded GPU smoke runs used HiFi4G only.
+Validate image/pose alignment and the intended view split on your prepared
+scene before running a full experiment.

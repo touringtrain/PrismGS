@@ -2,7 +2,7 @@
 
 The root README gives the one-command `python -m prismgs run` workflow.
 The same stages can be run separately. All paths below are user inputs/outputs;
-there is no import from a local VideoGS or AceGS tree.
+all required runtime code is included in this repository.
 
 ```bash
 python -m prismgs train --dataset DATA --output RUN --start 100 --end 105 --group-size 5

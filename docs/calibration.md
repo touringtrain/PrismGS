@@ -27,22 +27,22 @@ measured QPs are supported, as in the maintained README pipeline.
 ## Commands
 
 Activate the CUDA environment described in the root README. After training,
-packing and encoding `runs/greeting_20_full`, reproduce calibration with:
+packing and encoding `RUN`, reproduce calibration with:
 
 ```bash
 python -m prismgs calibrate \
-  --videos runs/greeting_20_full/feature_video \
+  --videos RUN/feature_video \
   --dataset datasets/4k_1_greeting \
-  --output runs/greeting_20_calibration \
+  --output RUN/calibration \
   --qps 0 10 20 30 40 50 --workers 2 --resolution 2 --split train
 
 python -m prismgs frontier \
-  --profile runs/greeting_20_calibration/profile.json \
-  --output runs/greeting_20_calibration/frontier.json --step-kb 1
+  --profile RUN/calibration/profile.json \
+  --output RUN/calibration/frontier.json --step-kb 1
 
 PYTHONPATH=. python scripts/report_calibration.py \
-  --profile runs/greeting_20_calibration/profile.json \
-  --output runs/greeting_20_calibration/report
+  --profile RUN/calibration/profile.json \
+  --output RUN/calibration/report
 ```
 
 Use a fresh calibration directory. Invalid/duplicate QPs, a missing QP=0,
@@ -76,33 +76,3 @@ The implementation is in `prismgs/pipeline.py` (`calibrate`) and
 `prismgs/quality.py` (`collect_profile`, `predict_quality`). Regression tests in
 `tests/test_calibration.py` verify isolated attribute sweeps, baseline reuse,
 full-sequence rate normalization, Eq. (8), and rejection of mixed camera views.
-
-## Local reproduction
-
-See calibration verification (local file: `calibration_verification.json`) for the measured
-2026-10-19 run and calibration curves (local file: `assets/calibration_greeting.png`).
-This experiment reuses the existing trained/encoded `4k_1_greeting` frames 0–19,
-then reruns calibration on frame 0, all 81 training views, resolution divisor 2,
-white background. It verifies the calibration module on this scene; it does not
-establish the paper's aggregate accuracy over HiFi4G and N3DV.
-
-The run completed 26 unique configurations, 2,106 view measurements and 30
-attribute anchors. `Q_base = 35.82225077 dB`; fixed high-byte payload is
-69.97285 KB/frame. All anchor PSNRs exactly match the earlier local calibration,
-and the generated 92-point frontier is unchanged. All nine regression tests pass.
-
-| Attribute varied alone | PSNR at QP=50 (dB) |
-| --- | ---: |
-| Position low bytes | 35.0493 |
-| Color | 24.7496 |
-| Opacity | 34.7772 |
-| Scale | 25.6774 |
-| Rotation | 28.1773 |
-
-An additional comparison against 96 unique **previously rendered** mixed
-configurations gives MAE 0.8414 dB, Pearson correlation 0.9770, and maximum
-absolute error 10.2174 dB. These metrics were computed without altering the
-paper's multiplicative model. They do not reproduce Table 1's HiFi4G aggregate
-MAE of 0.18 dB; this local experiment has a different scene/configuration sample
-and uses the training split. The raw comparison is retained under
-`runs/greeting_20_calibration/report/prediction_comparison.json`.

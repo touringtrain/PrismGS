@@ -12,9 +12,8 @@ The maintained `python -m prismgs` interface contains the full pipeline from
 streaming results. Runtime code and rasterizer/KNN source are included here;
 a neighboring VideoGS or AceGS checkout is not required.
 
-Raw datasets and initialization points must be obtained/prepared separately.
-Full default-length training and camera-ready metrics have not yet been reproduced
-with this release. See [verification](docs/verification.md) for the exact tests.
+Obtain and prepare datasets and initialization points before training.
+See [verification](docs/verification.md) for tests and experiment validation.
 
 ## Installation
 
@@ -75,8 +74,8 @@ python -m pip install -r requirements-preprocess.txt
 
 Obtain HiFi4G from the [official dataset repository](https://github.com/moqiyinlun/HiFi4G_Dataset)
 following its access instructions and terms. Dataset images and point clouds are
-not included in our Git repository or source archive. The local example copy is
-only for development; see [datasets/README.md](datasets/README.md).
+not included in the Git repository or source archive. See
+[datasets/README.md](datasets/README.md) for preparation guidance.
 
 For `4k_1_greeting`, select frames **0–19**. Frame numbers refer to time; each
 frame folder must contain all calibrated camera views, not a single video image.
@@ -174,8 +173,8 @@ datasets/coffee_martini/
 The [N3DV preparation guide](docs/data_preparation.md#neural-3d-video-n3dv)
 includes extraction commands, calibration/conversion requirements, arrangement,
 and a short test command. Raw N3DV conversion and paper-specific evaluation
-splits are not automatically inferred; the N3DV recipe remains unverified end
-to end in this release. Dataset files are not shipped in Git or source exports.
+splits are not automatically inferred. Prepare and validate them for your scene.
+Dataset files are not shipped in Git or source exports.
 
 ## One-command pipeline
 
@@ -231,7 +230,7 @@ Outputs under `--output` include:
 See [pipeline details](docs/pipeline.md) for commands and measurement conventions.
 The [calibration reproduction guide](docs/calibration.md) gives the paper's
 single-attribute measurement protocol, commands, normalized quality curves and
-local verification results.
+verification procedures.
 The [decoding verification guide](docs/decoding.md) tests every frontier
 configuration, reconstructed PLY integrity and serial/parallel consistency.
 For the paper's batched GPU attribute reconstruction, use `decode --device cuda`
@@ -245,7 +244,7 @@ or `calibrate`/`run --decode-device cuda`; see [GPU decoding](docs/gpu_decoding.
 - The codec uses its own versioned `metadata.json`. Legacy feature videos under
   `assets/example_scene/` use another format; repack checkpoints for the new CLI.
 - Calibration renders the first keyframe; rate measurements cover all supplied
-  frames. Model predictions are verified on all requested frames/views afterwards.
+  frames. Model predictions are checked against rendered anchor-frame measurements.
 - Sizes are decimal **KB/frame of video payload**, including MP4 overhead and
   excluding metadata, checkpoints and dataset transfer. DP is discretized;
   smaller `--step-kb` retains more candidates, with more computation.

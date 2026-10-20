@@ -21,12 +21,12 @@ GPU tensor filling/min-max loops and restores the previously disabled PLY writes
 
 ## Commands
 
-In the activated `videogs` environment, from the repository root:
+From the repository root in an environment with CUDA enabled:
 
 ```bash
 python -m prismgs decode \
-  --videos runs/greeting_20_full/feature_video \
-  --output runs/greeting_gpu_selected --qp 0 --workers 2 --device cuda
+  --videos RUN/feature_video \
+  --output RUN/selected/checkpoint --qp 0 --workers 2 --device cuda
 ```
 
 For a mixed-QP configuration replace `--qp 0` with `--config CONFIG.json`.
@@ -39,13 +39,13 @@ Full verification against the previously tested CPU outputs:
 
 ```bash
 PYTHONPATH=. python scripts/verify_decode.py \
-  --videos runs/greeting_20_full/feature_video \
+  --videos RUN/feature_video \
   --dataset datasets/4k_1_greeting \
-  --profile runs/greeting_20_calibration/profile.json \
-  --frontier runs/greeting_20_calibration/frontier.json \
-  --original-checkpoints runs/greeting_20_full/checkpoint \
-  --output runs/greeting_20_gpu_decode --workers 2 --device cuda \
-  --cpu-reference runs/greeting_20_decode
+  --profile RUN/calibration/profile.json \
+  --frontier RUN/frontier.json \
+  --original-checkpoints RUN/checkpoint \
+  --output RUN/gpu_decode --workers 2 --device cuda \
+  --cpu-reference RUN/decode
 ```
 
 Use fresh verification output directories. Every decoded frame is compared to
@@ -69,13 +69,13 @@ Each decode writes `decode_stats.json`:
   reconstruction; excludes CPU packing, D2H and PLY writing. First-call kernel
   initialization and scheduling can affect this value.
 
-For a local CPU/CUDA comparison using identical PLY output work:
+For a CPU/CUDA comparison using identical PLY output work:
 
 ```bash
 PYTHONPATH=. python scripts/benchmark_decode.py \
-  --videos runs/greeting_20_full/feature_video \
-  --frontier runs/greeting_20_calibration/frontier.json \
-  --output runs/greeting_20_gpu_benchmark --workers 2 --repeats 3
+  --videos RUN/feature_video \
+  --frontier RUN/frontier.json \
+  --output RUN/gpu_benchmark --workers 2 --repeats 3
 ```
 
 The benchmark performs one warmup per device/configuration and alternates execution
@@ -83,41 +83,3 @@ order across repeats. It reports medians and retains raw samples. Run it without
 concurrent GPU verification/rendering. Disk/video decoding and PLY output can
 dominate this 20-frame workload, so GPU reconstruction does not imply a faster
 end-to-end decoder. These measurements do not establish the paper's throughput.
-
-## Verified result: 2026-10-19
-
-On the RTX 3090, the CUDA path decoded all 96 unique configurations from the
-92-point frontier plus six uniform controls, across all 20 greeting frames.
-All 1,920 PLYs passed the CPU comparison and integrity checks. There were 7,776
-initial-frame renders and 162 additional dynamic-frame renders (frames 10/19).
-
-| CPU/CUDA comparison | Maximum absolute difference |
-| --- | ---: |
-| Gaussian parameter | 0.00000190735 |
-| Configuration mean PSNR | 0.00000609881 dB |
-| Configuration mean SSIM | 0.0000000176606 |
-| Individual-view PSNR | 0.0000724792 dB |
-| Individual-view SSIM | 0.000000238419 |
-| Video payload | 0 KB/frame |
-
-For low/middle/high rate configurations, CUDA outputs were byte-identical with
-one and two I/O/write workers (60 additional checkpoints). Uniform and mixed-QP
-CUDA CLI invocations also matched the verification runner exactly. All 11 tests
-passed, including actual GPU tests; none were skipped.
-See verification JSON (local file: `gpu_decoding_verification.json`).
-
-After the correctness run finished, three timed repeats per backend/configuration
-gave these medians for the complete 20-frame video-to-PLY operation:
-
-| Configuration | CPU (seconds) | CUDA (seconds) |
-| --- | ---: | ---: |
-| Low rate: uniform QP=50 | 0.8667 | 0.9699 |
-| Middle rate: frontier point 46 | 0.9012 | 1.1283 |
-| High rate: uniform QP=0 | 1.0984 | 1.3879 |
-
-CUDA was slower for this end-to-end workload. The operation still includes CPU
-video decoding, host/device transfers and PLY writing; these measurements do not
-isolate GPU reconstruction speed. The CUDA parallel reconstruction is working,
-but the paper's performance benefit has not been reproduced by this test.
-Raw samples are in benchmark JSON (local file: `gpu_decoding_benchmark.json`); full outputs
-remain under `runs/greeting_20_gpu_decode/` and `runs/greeting_20_gpu_benchmark/`.

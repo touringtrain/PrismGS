@@ -2,7 +2,7 @@
 
 Training/rendering derives from V³ / VideoGS
 (https://github.com/AuthorityWang/VideoGS, upstream revision
-3a858e5c18d1ff2ed0527623e03581ac27c0fa81), the authors' local VideoGS
+3a858e5c18d1ff2ed0527623e03581ac27c0fa81), the authors’ VideoGS
 modifications, and their consolidated AceGS tree. Import hashes are recorded
 under `training/`. Unmodified upstream source remains in `third_party/videogs/`.
 
